@@ -11,7 +11,16 @@ const flash = require('express-flash')
 const MongoDbStore = require('connect-mongo')(session)
 const passport = require('passport')
 const Emitter = require('events')
+const Razorpay = require('razorpay')
 
+
+
+const instance = new Razorpay({
+    key_id : "rzp_test_IqpKKCt3Rb3DJQ",
+    key_secret : "o2STvxx3SZNKDUkVd5O0Dh8z"
+  })
+
+  
 // Database connection
 mongoose.connect(process.env.MONGO_CONNECTION_URL, { useNewUrlParser: true, useCreateIndex:true, useUnifiedTopology: true, useFindAndModify : true });
 const connection = mongoose.connection;

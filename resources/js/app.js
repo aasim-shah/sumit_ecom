@@ -8,7 +8,7 @@ let addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.querySelector('#cartCounter')
 
 function updateCart(pizza) {
-    axios.post('/update-cart', pizza).then(res => {
+    axios.post('/addtocart', pizza).then(res => {
         cartCounter.innerText = res.data.totalQty
         new Noty({
             type: 'success',
@@ -24,6 +24,22 @@ function updateCart(pizza) {
             progressBar: false,
         }).show();
     })
+
+
+    // function updataCart(pizza) {
+    //     axios.post('/addtocart', pizza)
+    //         .then(function (response) {
+    //             console.log(response);
+    //             let totalcart = document.getElementById('totalcart')
+    //             msgContainer.style.display = "block"
+    //             hide()
+    //             totalcart.innerText = response.data.totalQty
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+
+    // }
 }
 
 addToCart.forEach((btn) => {
@@ -45,7 +61,7 @@ if(alertMsg) {
     
 const btn_plus =  document.querySelector('#btn-plus')
 btn_plus.addEventListener('click', (e) => {
-   
+    
     console.log('lskdf')
 })
 

@@ -6,6 +6,14 @@ const productController = require('../app/http/controllers/customers/productCont
 const adminOrderController = require('../app/http/controllers/admin/orderController')
 const statusController = require('../app/http/controllers/admin/statusController')
 const multer = require('multer')
+const Razorpay = require('razorpay')
+
+
+
+const instance = new Razorpay({
+    key_id : "rzp_test_IqpKKCt3Rb3DJQ",
+    key_secret : "o2STvxx3SZNKDUkVd5O0Dh8z"
+  })
 
 
 // multer
@@ -48,6 +56,24 @@ function initRoutes(app) {
     app.get('/customer/orders', auth, orderController().index)
     app.get('/customer/orders/:id', auth, orderController().show)
 
+
+
+   app.post('/checkout' , async (req , res)=> {
+      instance.orders.create({
+        amount: 5 * 100,
+        currency: "INR",
+        receipt: "receipt#1",
+      } , function(err ,order){
+        if(err){
+          console.log(err)
+    
+        }else{
+          console.log(order)
+          res.render('customers/cart' ,{d : req.session.cart , id : order.id})
+        }
+      })
+    })
+  
     // Admin routes
     app.get('/admin/orders', admin, adminOrderController().index)
     app.get('/admin/orders/create', admin, adminOrderController().create)

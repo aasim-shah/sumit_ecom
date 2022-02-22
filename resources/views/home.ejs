@@ -7,7 +7,7 @@
     <h1 class="text-xl font-bold mb-8">All products</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 col-gap-12 row-gap-16">
         <% products.forEach(function(product) { %>
-        <div class="w-full md:w-64  bg-gray-200 py-3 rounded-md px-1">
+        <div class="w-full md:w-64 mx-auto bg-gray-200 py-3 rounded-md px-1">
            <a href="view_product/<%= product._id %>"><img class="h-40 mb-4 mx-auto" src="/img/<%= product.image %>" alt=""></a> 
             <div class="text-center">
                 <h2 class="mb-4 text-lg"><%= product.name %></h2>                
