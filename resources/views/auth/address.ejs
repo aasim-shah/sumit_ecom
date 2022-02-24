@@ -1,0 +1,47 @@
+<section class="login flex justify-center pt-24">
+    <div class="w-full max-w-xs">
+        <form action="/address" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <% if(messages.error) { %>
+            <span class="text-red-500 text-sm"><%= messages.error %></span>
+            <% } %>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    City
+                </label>
+                <input required name="city" value="<%= messages.city  %>"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="username" type="text" placeholder="City Name">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    State
+                </label>
+                <input required name="state" value="<%= messages.state  %>"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                     type="text" placeholder="State ">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    Pin Code
+                </label>
+                <input required name="pin_code" value="<%= messages.pin_code  %>"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="text" placeholder="Enter your PIN Code">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Complete    Address
+                </label>
+                <input required name="address"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    id="address" type="text" placeholder="Address" />
+            </div>
+            <div class="text-center">
+                <Button class="px-3 py-2 bg-gray-800 font-bold text-white rounded-md">Update Profile</Button>
+            </div>
+        </form>
+        <p class="text-center text-gray-500 text-xs">
+            &copy;2022 sumit bhamisara. All rights reserved.
+        </p>
+    </div>
+</section>

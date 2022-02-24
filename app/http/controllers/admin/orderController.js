@@ -21,6 +21,7 @@ function orderController() {
           desc : req.body.desc,
           size : req.body.size,
           price : req.body.price,
+          bv : req.body.bv,
           image : req.file.filename 
       })
       const saved  = await d.save();

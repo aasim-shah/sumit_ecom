@@ -8,6 +8,11 @@ const userSchema = new Schema({
     phone : {type : Number , required : true},
     otp : {type : String },
     otp_verified : {type : Boolean},
+    city : {type : String} ,
+    state : {type : String},
+    reff_by : [],
+    pin_code : {type : String},
+    address : {type : String},
     role: { type: String, default: 'customer' }
 }, { timestamps: true })
 

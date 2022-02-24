@@ -6,6 +6,7 @@ const productController = require('../app/http/controllers/customers/productCont
 const adminOrderController = require('../app/http/controllers/admin/orderController')
 const statusController = require('../app/http/controllers/admin/statusController')
 const multer = require('multer')
+const address_updated = require('../app/http/middlewares/address')
 const Razorpay = require('razorpay')
 
 
@@ -43,8 +44,11 @@ function initRoutes(app) {
     app.post('/getotp', authController().post_otp)
     app.post('/verify_otp', authController().verify_otp)
 
-    app.get('/register', guest, authController().register)
-    app.post('/register', authController().postRegister)
+    app.get('/rewards',auth ,  authController().rewards)
+    app.get('/register',auth ,  authController().register)
+    app.post('/register', auth , authController().postRegister)
+    app.get('/address', authController().getAddress)
+    app.post('/address', authController().postAddress)
     app.post('/logout', authController().logout)
     app.get('/view_product/:id'  , productController().single)
 
@@ -58,9 +62,9 @@ function initRoutes(app) {
 
 
 
-   app.post('/checkout' , async (req , res)=> {
+   app.post('/checkout' , address_updated , async (req , res)=> {
       instance.orders.create({
-        amount: 5 * 100,
+        amount: req.body.tprice * 100,
         currency: "INR",
         receipt: "receipt#1",
       } , function(err ,order){
@@ -69,7 +73,9 @@ function initRoutes(app) {
     
         }else{
           console.log(order)
-          res.render('customers/cart' ,{d : req.session.cart , id : order.id})
+          const d = req.body.tprice*100
+          console.log(req.body.tprice)
+          res.render('customers/cart' ,{d : req.session.cart , id : order.id , amount : d })
         }
       })
     })
